@@ -1,4 +1,3 @@
-from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, ListView, TemplateView, UpdateView, RedirectView
 from django.urls import reverse_lazy
@@ -67,6 +66,9 @@ class FeddEntriesList(LoginRequiredMixin, TemplateView):
 
 
 class CancelSubscriptionRedirect(LoginRequiredMixin, RedirectView):
+    """
+    Cancel or Active RSS Subscription
+    """
     is_permanent = True
     url = reverse_lazy('rss:rss-list')
 
@@ -75,9 +77,6 @@ class CancelSubscriptionRedirect(LoginRequiredMixin, RedirectView):
         return super(CancelSubscriptionRedirect, self).dispatch(request, *args, **kwargs)
 
     def cancel_rss_subscription(self):
-        """
-        Cancel RSS Subscription
-        """
         rss = RssFeedUser.objects.get(id=self.kwargs["pk"])
         rss.subscribed = False if rss.subscribed else True
         rss.save()
