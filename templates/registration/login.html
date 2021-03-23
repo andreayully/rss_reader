@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+
+    <h1 class="mt-5">Please Sing in</h1>
+    {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p>Your account doesn't have access to this page. To proceed,
+                please login with an account that has access.</p>
+        {% else %}
+            <p>Please login to see this page.</p>
+        {% endif %}
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <br>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+    </form>
+    <hr class="my-4">
+    <a href="{% url 'users:create-user' %}" class="btn btn-success btn-lg" role="button">Sign up</a>
+{% endblock %}

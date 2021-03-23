@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if rss_feed %}
+        <h2>{{ rss_feed.title }}
+            <a href="{% url 'rss:update-rss' rss_feed.pk %}">
+                <i class="far fa-edit"></i>
+            </a></h2>
+        <h2>{{ rss_feed.last_update }}</h2>
+        <br>
+        {% if entries %}
+            {% for entry in entries %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class=“card-title”>Headline: {{ entry.title }}</h5>
+                        <p class=“card-text”>Description: {{ entry.description }}</p>
+                        <a href="{{ entry.link }}" target="_blank" class="card-link">Visit Link</a>
+                    </div>
+                    <div class="card-footer">
+                        <p>{% if entry.published %}{{ entry.published }} {% endif %}
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+    <h2>RSS Subscription</h2>
+    <div class="col-md-7 col-lg-8">
+        <form method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <br>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+{% endblock %}
