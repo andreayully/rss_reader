@@ -55,6 +55,6 @@ class RssFeedUserTest(TestCase):
 
     def test_save_entries(self):
         response = get_feed_entries()
-        log_path = "some path"
+        log_path = "log_entries.txt"
         self.assertEqual(response, "ALL ENTRIES WERE STORED")
-        # self.assertTrue(os.path.exists(log_path))
+        self.assertTrue(os.path.exists(log_path))

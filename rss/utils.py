@@ -13,8 +13,8 @@ def log_entries_file(feed_obj):
     else:
         action = 'w'
     log_file = open(filename, action)
-    log_file.write(
-        f'Feed {feed_obj.title} updated at {timezone.localtime(timezone.now())}. {feed_obj.feedentries_set.count()} entries \n')
+    log_file.write(f'Feed {feed_obj.title} updated at {timezone.localtime(timezone.now())}. '
+                   f'{feed_obj.feedentries_set.count()} entries \n')
     log_file.close()
 
 
