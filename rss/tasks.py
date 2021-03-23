@@ -9,22 +9,12 @@ logger = get_task_logger(__name__)
 app.conf.beat_schedule = {
     'get-feed-entries': {
         'task': 'rss.tasks.get_feed_entries_task',
-        'schedule': crontab(minute='*/15')
+        'schedule': crontab(hour='*/12')
     },
 
 }
 
 app.conf.timezone = 'UTC'
-
-
-@shared_task
-def send_notifiction():
-    print("HERE")
-
-
-@shared_task
-def add(x, y):
-    return x + y
 
 
 @shared_task
