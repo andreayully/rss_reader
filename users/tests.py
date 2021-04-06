@@ -17,7 +17,7 @@ class SignUpTest(TestCase):
         self.assertTrue(isinstance(self.dummy_user, User))
 
     def test_create_user_view(self):
-        response = self.client.get(reverse('rss:create-user'),
+        response = self.client.get(reverse('users:create-user'),
                                    {'first_name': 'Ana',
                                     'last_name': 'Gonzales',
                                     'email': 'ana@gmail.com',
@@ -46,5 +46,5 @@ class SignInTest(TestCase):
         self.assertFalse((user is not None) and user.is_authenticated)
 
     def test_signin_view(self):
-        response = self.client.get(reverse('rss:login'), {'username': 'test', 'password': 'test123*'})
+        response = self.client.get(reverse('users:login'), {'username': 'test', 'password': 'test123*'})
         self.assertEqual(response.status_code, 200)
